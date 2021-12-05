@@ -1,32 +1,32 @@
+import React, { useState, useRef } from "react";
+import "../App.css";
 
-import React, { useState} from "react";
-import '../App.css';
+export const Input = ({ setCitiesList }) => {
+  const [inputValue, setInputValue] = useState("");
+  const inputRef = useRef(null);
 
+  const handelOnClick = () => {
+    setCitiesList((currentArray) => [...currentArray, inputValue]);
+    
+    setInputValue('');
+    inputRef.current.focus();
+  };
 
+  const handelOnChange = (event) => {
+    setInputValue(event.target.value);
+  };
 
-
-
-
-export const Input = ({setCitiesList}) => {
-    const [inputValue, setInputValue ] = useState('empty');
-
-    const handelOnClick = () => {
-        setCitiesList((currentArray) => [...currentArray, inputValue])
-        
-    };
-
-    const handelOnChange = (event) => {
-        setInputValue( event.target.value);
-    }
- 
-    return(
+  return (
     <div className="InputWrap">
-        
-        <input className = 'Input' onChange={handelOnChange} value = {inputValue}/>
-        <button className = 'Button' onClick = {handelOnClick} >+</button>
-
+      <input
+        className="Input"
+        onChange={handelOnChange}
+        value={inputValue}
+        ref={inputRef}
+      />
+      <button className="Button" onClick={handelOnClick}>
+        +
+      </button>
     </div>
-) 
-    };
-
-
+  );
+};
