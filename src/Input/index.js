@@ -1,14 +1,17 @@
 import React, { useState, useRef } from "react";
 import "../App.css";
 
-export const Input = ({ setCitiesList }) => {
+export const Input = ({ dispatch }) => {
   const [inputValue, setInputValue] = useState("");
   const inputRef = useRef(null);
 
   const handelOnClick = () => {
-    setCitiesList((currentArray) => [...currentArray, inputValue]);
-    
-    setInputValue('');
+    // setCitiesList((currentArray) => [...currentArray, inputValue]);
+    dispatch({
+      type: "ADD_CITY",
+      payload: inputValue,
+    });
+    setInputValue("");
     inputRef.current.focus();
   };
 

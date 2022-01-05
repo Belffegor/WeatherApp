@@ -41,6 +41,7 @@
 
 .CardList{
   display: flex;
+  /* flex-wrap: wrap; */
 }
 
 .Card {
@@ -48,7 +49,8 @@
   height: fit-content;
   padding: 12px;
   border-radius: 12px;
-  background-color: #3a8ac0 ;
+  /* background-color: #3a8ac0 ; */
+   background: -webkit-linear-gradient(179deg, #86c7f9,#0c89e9);/* Chrome 10-25, Safari 5.1-6 */                          background: linear-gradient(179deg, #86c7f9,#0c89e9);/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */                                               
   font-size: 14px;
   color: #fff;
   margin-left: 24px;
@@ -63,6 +65,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.Wrap_button_del{
+  display: flex;
+  justify-content: end;
+  
+}
+
+.DeleteCitiCard{
+  border: none;
+  border-radius: 5px;
+  background: #bed3e2;
+  color: #3a8ac0;
+
 }
 
 .Title {

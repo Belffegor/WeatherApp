@@ -1,28 +1,55 @@
+import React, { useEffect, useState, memo } from "react";
+import "../App.css";
+import { API_KEY } from "../apisettings";
 
-import React from "react";
-import '../App.css';
+export const Card = memo(({ city, dispatch }) => {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&lang=ru&units=metric`
+    )
+      .then((result) => result.json())
+      .then((json) => setData(json));
+  }, []);
 
+  console.log("data >", data);
 
-export const Card = ({city}) => {
-    return (
+  if (!data) return null;
+
+  const { name, weather, main } = data;
+  const { description, icon } = weather[0];
+  const { temp, humidity, feels_like } = main;
+
+  const handleOnClick = () => {
+    dispatch({
+      type: "DELETE_CITY",
+      payload: city,
+    });
+  };
+
+  return (
     <div className="Card">
-        <div className ='MainInfo'>
-            <img className = 'Icon' src='https://openweathermap.org/img/wn/10d@2x.png' alt = 'icon'/>
-           <div className ='Title'>{city}</div>
-           <div className ='Description'>Cloudy</div>
-           <div className ='Temperature'>20</div>
+      <div className="Wrap_button_del">
+        <button className="DeleteCitiCard" onClick={handleOnClick}>
+          {" "}
+          ✖{" "}
+        </button>
+      </div>
 
-        </div>
-        <div className ="Informaciton">
-            <div> Humidity: 15</div>
-            <div> Feels like:19</div>
-
-        </div>
-      
+      <div className="MainInfo">
+        <img
+          className="Icon"
+          src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
+          alt="icon"
+        />
+        <div className="Title">{name}</div>
+        <div className="Description">{description}</div>
+        <div className="Temperature">{temp.toFixed()}</div>
+      </div>
+      <div className="Informaciton">
+        <div> Humidity: {humidity} </div>
+        <div> Feels like: {feels_like} </div>
+      </div>
     </div>
-  
-);
-
-}
-
-
+  );
+});
