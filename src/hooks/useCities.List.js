@@ -2,42 +2,78 @@ import { useState, useEffect, useReducer } from "react";
 // import { useRef } from "react/cjs/react.development";
 
 const initialState = {
-  citiesList: JSON.parse(localStorage.getItem("citiesList")) || [],
+    inputValue: '',
+    editingCity: '',
+    citiesList: JSON.parse(localStorage.getItem("citiesList")) || [],
 };
 
 const reducer = (state, action) => {
-  switch (action.type) {
-    case "ADD_CITY": {
-      const newState = {
-        ...state,
-        citiesList: [...state.citiesList, action.payload],
-      };
+    switch (action.type) {
+        case "ADD_CITY": {
+            const newState = {
+                ...state,
+                citiesList: [...state.citiesList, action.payload],
+            };
 
-      console.log("payload > ", action.payload);
-      return newState;
-    }
-    case "DELETE_CITY": {
-      const oldArray = state.citiesList;
-      const newArray = oldArray.filter((el) => el !== action.payload);
+            console.log("payload > ", action.payload);
+            return newState;
+        }
+        case "DELETE_CITY": {
+            const oldArray = state.citiesList;
+            const newArray = oldArray.filter((el) => el !== action.payload);
 
-      return { ...state, citiesList: newArray };
+            return { ...state, citiesList: newArray };
+        }
+        case "EDIT_CITY": {
+            // const oldArray = state.citiesList;
+            // const newArray = oldArray.filter((el) => el !== action.payload);
+
+            return {
+                ...state,
+                inputValue: action.payload,
+                editingCity: action.payload
+            };
+        }
+        case "EDIT_CITY_DONE": {
+            const { editingCity } = state;
+            const oldArray = state.citiesList;
+            const filteredArray = oldArray.filter(el => el !== editingCity);
+            const newArray = [...filteredArray, action.payload];
+            return {
+                ...state,
+                citiesList: newArray,
+                inputValue: initialState.inputValue,
+                editingCity: initialState.editingCity
+            };
+        }
+        case "CHANGE_INPUT_VALUE": {
+            // const oldArray = state.citiesList;
+            // const newArray = oldArray.filter((el) => el !== action.payload);
+
+            return { ...state, inputValue: action.payload };
+        }
+        case "RESET_INPUT_VALUE": {
+            // const oldArray = state.citiesList;
+            // const newArray = oldArray.filter((el) => el !== action.payload);
+
+            return { ...state, inputValue: initialState.inputValue };
+        }
+        default:
+            return initialState;
     }
-    default:
-      return initialState;
-  }
 };
 
 export const useCitiesList = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  console.log("state > ", state);
-  const { citiesList } = state;
-  //   const [citiesList, setCitiesList] = useState(
-  //     JSON.parse(localStorage.getItem("citiesList")) || []
-  //   );
+    const [state, dispatch] = useReducer(reducer, initialState);
+    console.log("state > ", state);
+    const { citiesList } = state;
+    //   const [citiesList, setCitiesList] = useState(
+    //     JSON.parse(localStorage.getItem("citiesList")) || []
+    //   );
 
-  useEffect(() => {
-    localStorage.setItem("citiesList", JSON.stringify(citiesList));
-  }, [citiesList]);
+    useEffect(() => {
+        localStorage.setItem("citiesList", JSON.stringify(citiesList));
+    }, [citiesList]);
 
-  return [citiesList, dispatch];
+    return [state, dispatch];
 };

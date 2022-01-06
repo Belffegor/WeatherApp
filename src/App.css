@@ -81,6 +81,15 @@
 
 }
 
+.EditCitiCard{
+  border: none;
+  border-radius: 5px;
+  background: #bed3e2;
+  color: #3a8ac0;
+  margin-right: 5px;
+
+}
+
 .Title {
   font-size: 24px;
   font-weight: 500;

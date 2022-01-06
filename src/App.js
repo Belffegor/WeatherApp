@@ -6,12 +6,13 @@ import { CardList } from "./CardList";
 import { useCitiesList } from "./hooks/useCities.List";
 
 function App() {
-  const [citiesList, dispatch] = useCitiesList();
+  const [state, dispatch] = useCitiesList();
+  const { inputValue, citiesList, editingCity } = state;
 
   // const citiesList = ['New York', 'London', 'Minsk'  ];
   return (
     <div className="Main">
-      <Input dispatch={dispatch} />
+      <Input dispatch={dispatch} inputValue={inputValue} editingCity={editingCity} />
       <CardList citiesList={citiesList} dispatch={dispatch} />
     </div>
   );
