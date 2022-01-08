@@ -1,20 +1,29 @@
-import React, { useEffect, useState, memo } from "react";
+import React, { useEffect, useState, memo, useContext, useReducer } from "react";
+import { useWeather } from '../hooks/useWeather';
+import { useCitiesList } from '../hooks/useCitiesList';
 import "../App.css";
 import { API_KEY } from "../apisettings";
+import { GlobalContext } from "../App";
+
+
 
 export const Card = memo(({ city, dispatch }) => {
-    const [data, setData] = useState(null);
-    useEffect(() => {
-        fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&lang=ru&units=metric`
-        )
-            .then((result) => result.json())
-            .then((json) => setData(json));
-    }, []);
-
-    console.log("data >", data);
-
+    const data = useWeather({ city });
     if (!data) return null;
+
+    // const [data, setData] = useState(null);
+    // const { dispatch } = useContext(GlobalContext);
+    // useEffect(() => {
+    //     fetch(
+    //         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&lang=ru&units=metric`
+    //     )
+    //         .then((result) => result.json())
+    //         .then((json) => setData(json));
+    // }, []);
+
+    // console.log("data >", data);
+
+    // if (!data) return null;
 
     const { name, weather, main } = data;
     const { description, icon } = weather[0];
@@ -57,4 +66,8 @@ export const Card = memo(({ city, dispatch }) => {
             </div>
         </div>
     );
+
 });
+
+
+

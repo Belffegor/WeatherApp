@@ -1,11 +1,14 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
+import { GlobalContext } from "../App";
 import "../App.css";
 
-export const Input = ({ dispatch, inputValue, editingCity }) => {
+export const Input = () => {
   // const [inputValue, setInputValue] = useState("");
   const inputRef = useRef(null);
+  const { dispatch, state: { inputValue, editingCity } } = useContext(GlobalContext);
+  // const { dispatch, state: { inputValue, editingCity } } = useContext(GlobalContext);
 
-  const handelOnClick = () => {
+  const handelOnAdd = () => {
     // setCitiesList((currentArray) => [...currentArray, inputValue]);
     dispatch({
       type: "ADD_CITY",
@@ -13,7 +16,7 @@ export const Input = ({ dispatch, inputValue, editingCity }) => {
     });
     dispatch({
       type: "RESET_INPUT_VALUE"
-    })
+    });
     // setInputValue("");
     inputRef.current.focus();
   };
@@ -51,7 +54,7 @@ export const Input = ({ dispatch, inputValue, editingCity }) => {
         editingCity ?
           <button className="Button" onClick={handelOnDone}> Done </button>
           :
-          <button className="Button" onClick={handelOnClick}> + </button>
+          <button className="Button" onClick={handelOnAdd}> + </button>
       }
     </div>
   );
