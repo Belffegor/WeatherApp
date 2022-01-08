@@ -7,7 +7,7 @@ const initialState = {
     citiesList: JSON.parse(localStorage.getItem("citiesList")) || [],
 };
 
-const reducer = (state, action) => {
+export const reducer = (state, action) => {
     switch (action.type) {
         case "ADD_CITY": {
             const newState = {

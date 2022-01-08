@@ -5,6 +5,8 @@ import "../App.css";
 import { API_KEY } from "../apisettings";
 import { GlobalContext } from "../App";
 
+import { inex } from '../Input/index';
+
 
 
 export const Card = memo(({ city, dispatch }) => {
@@ -12,7 +14,7 @@ export const Card = memo(({ city, dispatch }) => {
     if (!data) return null;
 
     // const [data, setData] = useState(null);
-    // const { dispatch } = useContext(GlobalContext);
+    const { dispatch } = useContext(GlobalContext);
     // useEffect(() => {
     //     fetch(
     //         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&lang=ru&units=metric`
