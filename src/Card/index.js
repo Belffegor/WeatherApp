@@ -9,12 +9,13 @@ import { inex } from '../Input/index';
 
 
 
-export const Card = memo(({ city, dispatch }) => {
-    const data = useWeather({ city });
+export const Card = memo(({ city }) => {
+    const data = useWeather(city);
+    const { dispatch } = useContext(GlobalContext);
     if (!data) return null;
 
     // const [data, setData] = useState(null);
-    const { dispatch } = useContext(GlobalContext);
+
     // useEffect(() => {
     //     fetch(
     //         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&lang=ru&units=metric`

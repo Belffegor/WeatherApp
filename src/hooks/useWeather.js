@@ -21,16 +21,16 @@ import CardList from "../CardList";
 //     return [state, dispatch];
 // };
 
-export const useWeather = ({ city }) => {
+export const useWeather = (city) => {
     const [data, setData] = useState(null);
-    const { dispatch } = useContext(GlobalContext);
+
     useEffect(() => {
         fetch(
             `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&lang=ru&units=metric`
         )
             .then((result) => result.json())
             .then((json) => setData(json));
-    }, []);
+    }, [city]);
 
 
     console.log("data >", data);
