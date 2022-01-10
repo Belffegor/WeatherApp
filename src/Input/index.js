@@ -21,6 +21,15 @@ export const Input = () => {
     inputRef.current.focus();
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      editingCity ?
+        handelOnDone() :
+        handelOnAdd()
+    }
+  };
+
+
   const handelOnDone = () => {
 
     dispatch({
@@ -49,13 +58,14 @@ export const Input = () => {
         onChange={handelOnChange}
         value={inputValue}
         ref={inputRef}
+        onKeyPress={handleKeyPress}
       />
       {
         editingCity ?
-          <button className="Button" onClick={handelOnDone}> Done </button>
+          <button className="Button" onClick={handelOnDone} > Done </button>
           :
-          <button className="Button" onClick={handelOnAdd}> + </button>
+          <button className="Button" onClick={handelOnAdd}  > + </button>
       }
-    </div>
+    </div >
   );
 };
