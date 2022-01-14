@@ -9,6 +9,10 @@ export const Input = () => {
   // const { dispatch, state: { inputValue, editingCity } } = useContext(GlobalContext);
 
   const handelOnAdd = () => {
+    const regex = /\d\W/;
+    if (inputValue === '' || regex.test(inputValue)) {
+      alert('Введите название город')
+    }
     // setCitiesList((currentArray) => [...currentArray, inputValue]);
     dispatch({
       type: "ADD_CITY",
@@ -21,13 +25,14 @@ export const Input = () => {
     inputRef.current.focus();
   };
 
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
       editingCity ?
         handelOnDone() :
         handelOnAdd()
     }
   };
+
 
 
   const handelOnDone = () => {
@@ -41,6 +46,10 @@ export const Input = () => {
     })
 
     inputRef.current.focus();
+    // inputRef.current.select();
+    // inputValue.select();
+    // inputRef.current.focus(inputRef.current.select());
+
   };
 
   const handelOnChange = (event) => {
@@ -62,9 +71,9 @@ export const Input = () => {
       />
       {
         editingCity ?
-          <button className="Button" onClick={handelOnDone} > Done </button>
+          <button className="Button" onClick={handelOnDone} > Изменить </button>
           :
-          <button className="Button" onClick={handelOnAdd}  > + </button>
+          <button className="Button" onClick={handelOnAdd}  > Добавить </button>
       }
     </div >
   );

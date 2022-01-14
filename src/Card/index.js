@@ -24,7 +24,7 @@ export const Card = memo(({ city }) => {
     //         .then((json) => setData(json));
     // }, []);
 
-    // console.log("data >", data);
+    console.log("data >", data);
 
     // if (!data) return null;
 
