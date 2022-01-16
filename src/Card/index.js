@@ -1,4 +1,5 @@
 import React, { useEffect, useState, memo, useContext, useReducer } from "react";
+import { Link, useHistory, useRouteMatch } from "react-router-dom";
 import { useWeather } from '../hooks/useWeather';
 import { useCitiesList } from '../hooks/useCitiesList';
 import "../App.css";
@@ -11,6 +12,8 @@ import { inex } from '../Input/index';
 
 export const Card = memo(({ city }) => {
     const data = useWeather(city);
+    const history = useHistory();
+    const isHome = Boolean(useRouteMatch('/home'));
     const { dispatch } = useContext(GlobalContext);
     if (!data) return null;
 
@@ -44,10 +47,41 @@ export const Card = memo(({ city }) => {
             type: "EDIT_CITY",
             payload: city,
         });
+        history.push('/home');
     };
 
+    if (isHome) {
+        return (
+            <Link to={`/city/${city.toLowerCase()}`} className="Card">
+
+                <div className="Wrap_button_del">
+                    <button className="EditCitiCard" onClick={handleOnEdit}> Edit   </button>
+                    <button className="DeleteCitiCard" onClick={handleOnDelete}>  ✖    </button>
+                </div>
+
+                <div className="MainInfo">
+                    <img
+                        className="Icon"
+                        src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
+                        alt="icon"
+                    />
+                    <div className="Title">{name}</div>
+                    <div className="Description">{description}</div>
+                    <div className="Temperature">{temp.toFixed()}</div>
+                </div>
+                <div className="Informaciton">
+                    <div> Humidity: {humidity} </div>
+                    <div> Feels like: {feels_like} </div>
+                </div>
+
+            </Link>
+        )
+
+
+    }
     return (
         <div className="Card">
+
             <div className="Wrap_button_del">
                 <button className="EditCitiCard" onClick={handleOnEdit}> Edit   </button>
                 <button className="DeleteCitiCard" onClick={handleOnDelete}>  ✖    </button>
@@ -67,6 +101,7 @@ export const Card = memo(({ city }) => {
                 <div> Humidity: {humidity} </div>
                 <div> Feels like: {feels_like} </div>
             </div>
+
         </div>
     );
 
