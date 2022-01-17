@@ -3,6 +3,7 @@ import { Link, useHistory, useRouteMatch } from "react-router-dom";
 import { useWeather } from '../hooks/useWeather';
 import { useCitiesList } from '../hooks/useCitiesList';
 import "../App.css";
+import "../images";
 import { API_KEY } from "../apisettings";
 import { GlobalContext } from "../App";
 
@@ -71,9 +72,13 @@ export const Card = memo(({ city, setCityCoord }) => {
                 <div className="MainInfo">
                     <img
                         className="Icon"
-                        src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
+                        // src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
+                        src={`../images/${icon}.png`}
                         alt="icon"
+
+
                     />
+                    {console.log('icon >', icon)}
                     <div className="Title">{name}</div>
                     <div className="Description">{description}</div>
                     <div className="Temperature">{temp.toFixed()}</div>
@@ -99,7 +104,8 @@ export const Card = memo(({ city, setCityCoord }) => {
             <div className="MainInfo">
                 <img
                     className="Icon"
-                    src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
+                    // src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
+                    src={`../images/${icon}.png`}
                     alt="icon"
                 />
                 <div className="Title">{name}</div>

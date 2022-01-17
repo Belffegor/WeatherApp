@@ -6,10 +6,11 @@ import { API_KEY } from "../apisettings";
 import { GlobalContext } from "../App";
 
 import { inex } from '../Input/index';
+import { Link } from "react-router-dom";
 
 
 
-import { Link, useParams } from 'react-router-dom';
+
 
 import { Card } from '../Card';
 // import { DailyCards } from '../DailyCards';
@@ -25,6 +26,7 @@ export const SingleCity = (props) => {
     console.log('data >', data)
     return (
         <div className="SingleCityWrap">
+            <Link to="/home" className="GoBack"> Назад </Link>
             <Card city={city} setCityCoord={setCityCoord} />
             {data &&
                 <div className="DailyCards">
