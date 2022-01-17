@@ -22,7 +22,7 @@ function App() {
             <Input />
             <CardList />
           </Route>
-          <Route path="/city/:city" render={SingleCity} />
+          <Route path="/city/:city" component={SingleCity} />
           {/* <SingleCity />
         </Route> */}
         </div>

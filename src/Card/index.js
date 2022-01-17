@@ -10,11 +10,20 @@ import { inex } from '../Input/index';
 
 
 
-export const Card = memo(({ city }) => {
+export const Card = memo(({ city, setCityCoord }) => {
     const data = useWeather(city);
     const history = useHistory();
     const isHome = Boolean(useRouteMatch('/home'));
     const { dispatch } = useContext(GlobalContext);
+    useEffect(() => {
+        if (data && data.coord.lat && data.coord.lon && setCityCoord) {
+            setCityCoord({
+                lat: data.coord.lat,
+                lon: data.coord.lon
+            });
+
+        };
+    }, [data, setCityCoord]);
     if (!data) return null;
 
     // const [data, setData] = useState(null);
