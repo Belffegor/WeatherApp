@@ -1,9 +1,5 @@
-import { useEffect, useState, memo, useContext, useReducer } from "react";
+import { useEffect, useState } from "react";
 import { API_KEY } from "../apisettings";
-import { GlobalContext } from "../App";
-import Card from '../Card';
-import CardList from "../CardList";
-
 
 
 export const useForecast = (coords) => {
@@ -19,13 +15,8 @@ export const useForecast = (coords) => {
                 .then((json) => setData(json))
         }
 
-
     }, [coords]);
 
-
-
-
-    console.log("data >", data);
     return data;
 };
 

@@ -13,7 +13,7 @@ import { Link, useParams } from 'react-router-dom';
 
 import { Card } from '../Card';
 // import { DailyCards } from '../DailyCards';
-
+import { DailyCard } from './dailyCard';
 import { useForecast } from '../hooks/useForecast';
 
 import '../App.css';
@@ -23,7 +23,17 @@ export const SingleCity = (props) => {
     const data = useForecast(cityCoord);
     const { city } = props.match.params;
     console.log('data >', data)
-    return (<Card city={city} setCityCoord={setCityCoord} />)
+    return (
+        <div className="SingleCityWrap">
+            <Card city={city} setCityCoord={setCityCoord} />
+            {data &&
+                <div className="DailyCards">
+                    {data.daily.map(dailyCard => <DailyCard dailyCard={dailyCard} key={dailyCard.dt} />)}
+                </div>
+
+            }
+        </div>
+    )
 };
 
 
