@@ -24,6 +24,8 @@ export const SingleCity = (props) => {
     const data = useForecast(cityCoord);
     const { city } = props.match.params;
     console.log('data >', data)
+
+
     return (
         <div className="SingleCityWrap">
             <Link to="/home" className="GoBack"> Назад </Link>

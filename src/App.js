@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 
 import "./App.css";
+
 import { Input } from "./Input";
 import { CardList } from "./CardList";
 import { SingleCity } from "./SingleCity";

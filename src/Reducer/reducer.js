@@ -6,7 +6,6 @@ export const initialState = {
     editingCity: '',
     citiesList: JSON.parse(localStorage.getItem("citiesList")) || [],
 };
-
 export const reducer = (state, action) => {
     switch (action.type) {
         case "ADD_CITY": {
@@ -22,7 +21,12 @@ export const reducer = (state, action) => {
             const oldArray = state.citiesList;
             const newArray = oldArray.filter((el) => el !== action.payload);
 
-            return { ...state, citiesList: newArray };
+            return {
+                ...state,
+                citiesList: newArray,
+                editingCity: initialState.editingCity,
+                inputValue: initialState.inputValue,
+            };
         }
         case "EDIT_CITY": {
             // const oldArray = state.citiesList;
@@ -35,6 +39,15 @@ export const reducer = (state, action) => {
             };
         }
         case "EDIT_CITY_DONE": {
+            if (!action.payload) {
+                return {
+                    ...state,
+
+                    inputValue: initialState.inputValue,
+                    editingCity: initialState.editingCity
+                };
+
+            }
             const { editingCity } = state;
             const oldArray = state.citiesList;
             const filteredArray = oldArray.filter(el => el !== editingCity);

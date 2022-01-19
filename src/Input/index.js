@@ -9,11 +9,15 @@ export const Input = () => {
   // const { dispatch, state: { inputValue, editingCity } } = useContext(GlobalContext);
 
   const handelOnAdd = () => {
-    const regex = /\d\W/;
-    if (inputValue === '' || regex.test(inputValue)) {
-      alert('Введите название город')
-    }
-    // setCitiesList((currentArray) => [...currentArray, inputValue]);
+    // const regex = /\d\W/;
+    // if (inputValue === '') {
+    //   alert('Введите название город')
+    //   dispatch({
+    //     type: "RESET_INPUT_VALUE"
+    //   });
+    // }
+
+
     dispatch({
       type: "ADD_CITY",
       payload: inputValue,
