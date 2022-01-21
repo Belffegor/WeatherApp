@@ -3,19 +3,13 @@ import { GlobalContext } from "../App";
 import "../App.css";
 
 export const Input = () => {
-  // const [inputValue, setInputValue] = useState("");
+
   const inputRef = useRef(null);
   const { dispatch, state: { inputValue, editingCity } } = useContext(GlobalContext);
-  // const { dispatch, state: { inputValue, editingCity } } = useContext(GlobalContext);
+
 
   const handelOnAdd = () => {
-    // const regex = /\d\W/;
-    // if (inputValue === '') {
-    //   alert('Введите название город')
-    //   dispatch({
-    //     type: "RESET_INPUT_VALUE"
-    //   });
-    // }
+
 
 
     dispatch({
@@ -50,9 +44,7 @@ export const Input = () => {
     })
 
     inputRef.current.focus();
-    // inputRef.current.select();
-    // inputValue.select();
-    // inputRef.current.focus(inputRef.current.select());
+
 
   };
 
@@ -61,7 +53,7 @@ export const Input = () => {
       type: 'CHANGE_INPUT_VALUE',
       payload: event.target.value
     })
-    // setInputValue(event.target.value);
+
   };
 
   return (

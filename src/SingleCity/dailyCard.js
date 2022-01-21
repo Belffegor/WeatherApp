@@ -15,10 +15,6 @@ const daysOfWeek = new Map([
 
 ]);
 
-
-
-
-
 export const DailyCard = ({ dailyCard }) => {
     const { dt, weather, temp: { day } } = dailyCard;
     const { description, main, icon } = weather[0];

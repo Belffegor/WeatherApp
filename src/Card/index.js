@@ -1,14 +1,11 @@
 import React, { useEffect, useState, memo, useContext, useReducer } from "react";
 import { Link, useHistory, useRouteMatch } from "react-router-dom";
 import { useWeather } from '../hooks/useWeather';
-import { useCitiesList } from '../hooks/useCitiesList';
-import "../App.css";
-// import "..images/";
 
-import { API_KEY } from "../apisettings";
+import "../App.css";
+
 import { GlobalContext } from "../App";
 
-import { index } from '../Input/index';
 import picWeatherStore from '../Utils/imgWeathe';
 
 
@@ -37,10 +34,7 @@ export const Card = memo(({ city, setCityCoord }) => {
             type: "DELETE_CITY",
             payload: city,
         });
-        // dispatch({
-        //     type: "EDIT_CITY_DONE",
-        //     payload: city,
-        // });
+
     };
 
     const handleOnEdit = (event) => {
@@ -86,19 +80,10 @@ export const Card = memo(({ city, setCityCoord }) => {
 
     if (!data) return null;
 
-    // const [data, setData] = useState(null);
-
-    // useEffect(() => {
-    //     fetch(
-    //         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&lang=ru&units=metric`
-    //     )
-    //         .then((result) => result.json())
-    //         .then((json) => setData(json));
-    // }, []);
 
     console.log("data >", data);
 
-    // if (!data) return null;
+
 
     const { name, weather, main } = data;
     const { description, icon } = weather[0];
@@ -128,7 +113,7 @@ export const Card = memo(({ city, setCityCoord }) => {
 
 
 
-                        // src={picOnCards}
+
                         alt="icon"
 
 
@@ -161,7 +146,7 @@ export const Card = memo(({ city, setCityCoord }) => {
                     className="Icon"
                     src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
 
-                    // src={picOnCards}
+
                     alt="icon"
                 />
 
