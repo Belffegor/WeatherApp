@@ -9,6 +9,8 @@ import { SingleCity } from "./SingleCity";
 // import { useEffect } from "react/cjs/react.development";
 import { useCitiesList } from "./hooks/useCitiesList";
 
+
+
 export const GlobalContext = React.createContext();
 
 function App() {

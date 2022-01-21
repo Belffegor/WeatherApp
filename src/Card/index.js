@@ -104,7 +104,7 @@ export const Card = memo(({ city, setCityCoord }) => {
     const { description, icon } = weather[0];
     const { temp, humidity, feels_like } = main;
 
-    // const picOnCards = picWeatherStore.get(`${icon}`);
+    const picOnCards = picWeatherStore.get(`${icon}`);
 
 
 
@@ -125,7 +125,7 @@ export const Card = memo(({ city, setCityCoord }) => {
                     <img
                         className="Icon"
                         src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
-                        // src={require(`../images/${icon}.png`)}
+
 
 
                         // src={picOnCards}
@@ -152,15 +152,15 @@ export const Card = memo(({ city, setCityCoord }) => {
         <div className="Card">
 
             <div className="Wrap_button_del">
-                <button className="EditCitiCard" onClick={handleOnEdit}> Edit   </button>
-                <button className="DeleteCitiCard" onClick={handleOnDelete}>  ✖    </button>
+                {/* <button className="EditCitiCard" onClick={handleOnEdit}> Edit   </button>
+                <button className="DeleteCitiCard" onClick={handleOnDelete}>  ✖    </button> */}
             </div>
 
             <div className="MainInfo">
                 <img
                     className="Icon"
                     src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
-                    // src={`../images/${icon}.png`}
+
                     // src={picOnCards}
                     alt="icon"
                 />

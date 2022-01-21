@@ -19,16 +19,21 @@ import { useForecast } from '../hooks/useForecast';
 
 import '../App.css';
 
+import picWeatherStore from '../Utils/imgWeathe';
+
 export const SingleCity = (props) => {
     const [cityCoord, setCityCoord] = useState(null);
     const data = useForecast(cityCoord);
     const { city } = props.match.params;
+    // const data = useWeather(city);
+    // const { description, main, icon } = weather[0];
+    // const picOnCards = picWeatherStore.get(`${icon}`);
     console.log('data >', data)
 
 
     return (
         <div className="SingleCityWrap">
-            <Link to="/home" className="GoBack"> Назад </Link>
+            <Link to="/home" className="GoBack">Назад  </Link>
             <Card city={city} setCityCoord={setCityCoord} />
             {data &&
                 <div className="DailyCards">

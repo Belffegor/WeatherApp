@@ -27,9 +27,8 @@ export const DailyCard = ({ dailyCard }) => {
     const numberDays = currentDate.getDate();
     const dayOfWeek = daysOfWeek.get(`${dayWeek}`)
     console.log('icon> ', icon)
-    // const picOnCards = picWeatherStore.get(`${icon}`);
-    console.log('icon>>>>> ', icon)
-    console.log('icon>>>>> ', icon)
+    const picOnCards = picWeatherStore.get(`${icon}`);
+
     return (
         <div className="DailyCard">
             {/* <div>{currentDate.toString().split(' ')[0]}</div> */}
